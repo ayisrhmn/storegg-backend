@@ -16,7 +16,12 @@ module.exports = {
         .populate('category')
         .populate('nominals');
 
-      res.render('voucher/voucher', {voucher, alert});
+      res.render('voucher/voucher', {
+        voucher,
+        alert,
+        name: req.session.user.name,
+        title: 'Voucher',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -29,7 +34,12 @@ module.exports = {
       const category = await Category.find();
       const nominal = await Nominal.find();
 
-      res.render('voucher/create', {category, nominal});
+      res.render('voucher/create', {
+        category,
+        nominal,
+        name: req.session.user.name,
+        title: 'Add Voucher',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -39,7 +49,7 @@ module.exports = {
   },
   actionCreate: async (req, res) => {
     try {
-      const {game_name, category, nominals} = req.body;
+      const {gameName, category, nominals} = req.body;
 
       if (req.file) {
         let tmp_path = req.file.path;
@@ -61,7 +71,7 @@ module.exports = {
         src.on('end', async () => {
           try {
             const voucher = new Voucher({
-              game_name,
+              gameName,
               category,
               nominals,
               thumbnail: filename,
@@ -83,7 +93,7 @@ module.exports = {
       } else {
         try {
           const voucher = new Voucher({
-            game_name,
+            gameName,
             category,
             nominals,
           });
@@ -117,7 +127,13 @@ module.exports = {
         .populate('category')
         .populate('nominals');
 
-      res.render('voucher/edit', {voucher, category, nominal});
+      res.render('voucher/edit', {
+        voucher,
+        category,
+        nominal,
+        name: req.session.user.name,
+        title: 'Edit Voucher',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -128,7 +144,7 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const {id} = req.params;
-      const {game_name, category, nominals} = req.body;
+      const {gameName, category, nominals} = req.body;
 
       if (req.file) {
         let tmp_path = req.file.path;
@@ -160,7 +176,7 @@ module.exports = {
             await Voucher.findOneAndUpdate({
               _id: id,
             }, {
-              game_name,
+              gameName,
               category,
               nominals,
               thumbnail: filename,
@@ -182,7 +198,7 @@ module.exports = {
           await Voucher.findOneAndUpdate({
             _id: id,
           }, {
-            game_name,
+            gameName,
             category,
             nominals,
           });

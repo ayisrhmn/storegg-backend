@@ -7,14 +7,19 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var session = require('express-session');
 
+var userRouter = require('./app/user/router');
 var dashboardRouter = require('./app/dashboard/router');
 var categoryRouter = require('./app/category/router');
 var nominalRouter = require('./app/nominal/router');
 var voucherRouter = require('./app/voucher/router');
 var bankRouter = require('./app/bank/router');
 var paymentRouter = require('./app/payment/router');
+var userRouter = require('./app/user/router');
+var transactionRouter = require('./app/transaction/router');
+var playerRouter = require('./app/player/router');
 
 var app = express();
+var URL = '/api/v1';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,12 +44,17 @@ app.use(
   express.static(path.join(__dirname, '/node_modules/admin-lte/')),
 );
 
-app.use('/', dashboardRouter);
+app.use('/', userRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/category', categoryRouter);
 app.use('/nominal', nominalRouter);
 app.use('/voucher', voucherRouter);
 app.use('/bank', bankRouter);
 app.use('/payment', paymentRouter);
+app.use('/transaction', transactionRouter);
+
+// api
+app.use(`${URL}/player`, playerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

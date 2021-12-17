@@ -11,7 +11,12 @@ module.exports = {
       const payment = await Payment.find()
         .populate('banks');
 
-      res.render('payment/payment', {payment, alert});
+      res.render('payment/payment', {
+        payment,
+        alert,
+        name: req.session.user.name,
+        title: 'Payment Type',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -23,7 +28,11 @@ module.exports = {
     try {
       const bank = await Bank.find();
 
-      res.render('payment/create', {bank});
+      res.render('payment/create', {
+        bank,
+        name: req.session.user.name,
+        title: 'Add Payment Type',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -56,7 +65,12 @@ module.exports = {
       const payment = await Payment.findOne({_id: id})
         .populate('banks');
 
-      res.render('payment/edit', {payment, bank});
+      res.render('payment/edit', {
+        payment,
+        bank,
+        name: req.session.user.name,
+        title: 'Edit Payment Type',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');

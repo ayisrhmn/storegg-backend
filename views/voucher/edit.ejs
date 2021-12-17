@@ -30,16 +30,16 @@
         <div class="col-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Voucher (<%= voucher.game_name %>)</h3>
+              <h3 class="card-title">Edit Voucher (<%= voucher.gameName %>)</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             <form action="/voucher/edit/<%= voucher._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="game_name">Game Name</label>
-                  <input type="text" value="<%= voucher.game_name %>" name="game_name" class="form-control"
-                    id="game_name" placeholder="Enter game name" required>
+                  <label for="gameName">Game Name</label>
+                  <input type="text" value="<%= voucher.gameName %>" name="gameName" class="form-control"
+                    id="gameName" placeholder="Enter game name" required>
                 </div>
                 <div class="form-group">
                   <label>Category</label>

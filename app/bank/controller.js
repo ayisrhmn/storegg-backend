@@ -9,7 +9,12 @@ module.exports = {
       const alert = {message: alertMessage, status: alertStatus};
       const bank = await Bank.find();
 
-      res.render('bank/bank', {bank, alert});
+      res.render('bank/bank', {
+        bank,
+        alert,
+        name: req.session.user.name,
+        title: 'Bank',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -19,7 +24,10 @@ module.exports = {
   },
   viewCreate: async (req, res) => {
     try {
-      res.render('bank/create');
+      res.render('bank/create', {
+        name: req.session.user.name,
+        title: 'Add Bank',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
@@ -50,7 +58,11 @@ module.exports = {
       const {id} = req.params;
       const bank = await Bank.findOne({_id: id});
 
-      res.render('bank/edit', {bank});
+      res.render('bank/edit', {
+        bank,
+        name: req.session.user.name,
+        title: 'Edit Bank',
+      });
     } catch (err) {
       req.flash('alertMessage', `${err.message}`);
       req.flash('alertStatus', 'danger');
