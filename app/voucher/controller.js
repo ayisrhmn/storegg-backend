@@ -75,6 +75,7 @@ module.exports = {
               category,
               nominals,
               thumbnail: filename,
+              user: req.session.user.id,
             });
 
             await voucher.save();
@@ -96,6 +97,7 @@ module.exports = {
             gameName,
             category,
             nominals,
+            user: req.session.user.id,
           });
 
           await voucher.save();
@@ -180,6 +182,7 @@ module.exports = {
               category,
               nominals,
               thumbnail: filename,
+              user: req.session.user.id,
             });
 
             req.flash('alertMessage', 'Successfully update voucher!');
@@ -201,6 +204,7 @@ module.exports = {
             gameName,
             category,
             nominals,
+            user: req.session.user.id,
           });
 
           req.flash('alertMessage', 'Successfully update voucher!');
