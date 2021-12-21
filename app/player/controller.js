@@ -100,12 +100,12 @@ module.exports = {
         value: value,
         player: req.player._id,
         historyUser: {
-          name: res_voucher._doc.user?.name,
-          phoneNumber: res_voucher._doc.user?.phoneNumber,
+          name: res_voucher._doc.user.name,
+          phoneNumber: res_voucher._doc.user.phoneNumber,
         },
 
-        category: res_voucher._doc.category?._id,
-        user: res_voucher._doc.user?._id,
+        category: res_voucher._doc.category._id,
+        user: res_voucher._doc.user._id,
       };
 
       const transaction = new Transaction(payload);
