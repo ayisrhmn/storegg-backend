@@ -43,7 +43,7 @@
           <% } %>
         </td>
         <td>
-          <%= transaction[i].player.name ?? '-' %>
+          <%= transaction[i].player.name %>
         </td>
         <td>
           <form action="/transaction/status/<%= transaction[i]._id %>?status=failed&_method=PUT" method="POST"
