@@ -48,7 +48,7 @@
                       <% bank.forEach((bank) => { %>
                       <option value="<%= bank._id %>" 
                         <% payment.banks.forEach((vBank) => { %>
-                          <% if (bank._id.toString() == vBank?._id.toString()) { %>
+                          <% if (bank._id.toString() == vBank._id.toString()) { %>
                             selected
                           <% } %>
                         <% }) %>

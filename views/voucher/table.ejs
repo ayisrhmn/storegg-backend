@@ -18,7 +18,7 @@
         <td>
           <img src="/uploads/<%= voucher[i].thumbnail %>" style="width: 35%; height: 35%;">
         </td>
-        <td><%= voucher[i]?.category?.name ?? '-' %></td>
+        <td><%= voucher[i].category.name ?? '-' %></td>
         <td>
           <% voucher[i].nominals.forEach((nominal) => { %>
             <span class="badge badge-info">

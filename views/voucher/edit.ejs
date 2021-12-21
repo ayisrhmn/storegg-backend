@@ -47,7 +47,7 @@
                     <option selected="selected" disabled>Choose Category</option>
                     <% category.forEach((category) => { %>
                     <option value="<%= category._id %>"
-                      <% if (category._id.toString() == voucher?.category?._id.toString()) { %>
+                      <% if (category._id.toString() == voucher.category._id.toString()) { %>
                         selected 
                       <% } %>
                     >
@@ -64,7 +64,7 @@
                       <% nominal.forEach((nominal) => { %>
                       <option value="<%= nominal._id %>" 
                         <% voucher.nominals.forEach((vNominal) => { %>
-                          <% if (nominal._id.toString() == vNominal?._id.toString()) { %>
+                          <% if (nominal._id.toString() == vNominal._id.toString()) { %>
                             selected
                           <% } %>
                         <% }) %>
