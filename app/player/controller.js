@@ -28,12 +28,23 @@ module.exports = {
         .populate('category')
         .populate('nominals')
         .populate('user', '_id name phoneNumber');
+      const payment = await Payment.find()
+        .populate('banks');
 
       if (!voucher) {
         return res.status(404).json({message: 'voucher game not found!'});
       }
 
-      res.status(200).json({data: voucher});
+      if (!payment) {
+        return res.status(404).json({message: 'payment not found!'});
+      }
+
+      res.status(200).json({
+        data: {
+          detail: voucher,
+          payment: payment,
+        },
+      });
     } catch (err) {
       res.status(500).json({message: err.message || 'Internal server error!'});
     }
@@ -244,7 +255,7 @@ module.exports = {
         src.pipe(dest);
 
         src.on('end', async () => {
-          let player = await Player.findOne({_id: req.player._id,});
+          let player = await Player.findOne({_id: req.player._id});
 
           let currentImage = `${config.rootPath}/public/uploads/${player.avatar}`;
 
