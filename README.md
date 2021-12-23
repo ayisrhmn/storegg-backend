@@ -1,4 +1,4 @@
-# StoreGG Admin (Backend)
+# StoreGG Admin (Backend & API)
 MERN Stack project, for repo frontend
 <a href="https://github.com/ayisrhmn/storegg">
   StoreGG (Frontend)
