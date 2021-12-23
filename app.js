@@ -17,6 +17,7 @@ var bankRouter = require('./app/bank/router');
 var paymentRouter = require('./app/payment/router');
 var userRouter = require('./app/user/router');
 var transactionRouter = require('./app/transaction/router');
+var apiTestRouter = require('./app/api-test/router');
 var playerRouter = require('./app/player/router');
 var authRouter = require('./app/auth/router');
 
@@ -57,6 +58,7 @@ app.use('/payment', paymentRouter);
 app.use('/transaction', transactionRouter);
 
 // api
+app.use(`${URL}`, apiTestRouter);
 app.use(`${URL}/player`, playerRouter);
 app.use(`${URL}/auth`, authRouter);
 
